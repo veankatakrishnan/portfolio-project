@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Futuristic Dark Portfolio Design System - All colors MUST be HSL */
+
+@layer base {
+  :root {
+    /* Black & White Theme */
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
+
+    /* Cards & Surfaces */
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 90%;
+    --card-glow: 0 0% 15%;
+
+    /* Interactive Elements */
+    --popover: 0 0% 15%;
+    --popover-foreground: 0 0% 90%;
+
+    /* Monochrome Brand Colors */
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --primary-glow: 0 0% 80%;
+
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 0 0% 90%;
+    --secondary-glow: 0 0% 40%;
+
+    --accent: 0 0% 60%;
+    --accent-foreground: 0 0% 0%;
+    --accent-glow: 0 0% 80%;
+
+    /* Neutral Tones */
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 60%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 90%;
+
+    /* Borders & Inputs */
+    --border: 0 0% 25%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 100%;
+
+    /* Layout */
+    --radius: 0.75rem;
+
+    /* Custom Portfolio Variables */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.05), hsl(var(--secondary) / 0.1));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--card-glow)));
+    --gradient-border: linear-gradient(90deg, hsl(var(--foreground)), hsl(var(--muted-foreground)));
+    --gradient-text: linear-gradient(90deg, hsl(var(--foreground)), hsl(var(--muted-foreground)));
+    
+    /* Shadows & Glows */
+    --shadow-glow: 0 0 20px hsl(var(--foreground) / 0.1);
+    --shadow-glow-lg: 0 0 40px hsl(var(--foreground) / 0.2);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.4);
+    
+    /* Animation Timings */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Portfolio is dark by default - no light mode needed */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
+    background: radial-gradient(ellipse at top, hsl(var(--foreground) / 0.02) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, hsl(var(--muted-foreground) / 0.03) 0%, transparent 50%),
+                hsl(var(--background));
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, hsl(var(--foreground)), hsl(var(--muted-foreground)));
+    @apply rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, hsl(var(--foreground)), hsl(var(--accent)));
+  }
+}
+
+@layer components {
+  /* Portfolio Button Variants */
+  .btn-hero {
+    @apply relative px-8 py-4 font-semibold rounded-full;
+    background: var(--gradient-border);
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .btn-hero:hover {
+    box-shadow: var(--shadow-glow-lg);
+    transform: translateY(-2px);
+  }
+
+  .btn-hero::before {
+    content: '';
+    @apply absolute inset-0.5 rounded-full;
+    background: hsl(var(--background));
+    z-index: -1;
+  }
+
+  .btn-outline {
+    @apply relative px-6 py-3 font-medium rounded-full border-2 border-transparent;
+    background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
+                var(--gradient-border) border-box;
+    transition: var(--transition-smooth);
+  }
+
+  .btn-outline:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-1px);
+  }
+
+  /* Glow Effects */
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+
+  .glow-secondary {
+    box-shadow: 0 0 20px hsl(var(--secondary) / 0.3);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px hsl(var(--accent) / 0.3);
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Card Styles */
+  .portfolio-card {
+    @apply relative p-6 rounded-xl;
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-card);
+  }
+
+  .portfolio-card:hover {
+    border-color: hsl(var(--primary) / 0.5);
+    box-shadow: var(--shadow-glow), var(--shadow-card);
+    transform: translateY(-4px);
+  }
+
+  /* Floating Elements */
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Typing Animation */
+  .typing-animation {
+    overflow: hidden;
+    border-right: 2px solid hsl(var(--primary));
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: hsl(var(--primary)); }
+  }
+}
